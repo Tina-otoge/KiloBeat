@@ -24,7 +24,7 @@ class Bot(commands.Bot):
         if self.reactive and context.message is not None:
             self.add_reaction(context.message, emoji)
 
-bot = Bot(command_prefix=commands.when_mentioned_or('$'), description='A playlist example for discord.py')
+bot = Bot(command_prefix=commands.when_mentioned)
 bot.add_cog(Music(bot))
 
 @bot.event
