@@ -129,7 +129,11 @@ class Music:
         else:
             player.volume = 0.6
             entry = VoiceEntry(context.message, player)
-            await self.bot.say('Enqueued ' + str(entry))
+            embed = discord.Embed(Title=entry.player.title)
+            if entry.player.duration:
+                embed.add_field(Duration=entry.player.duration)
+            embed.set_footer(text='Requester: {}'.format(entry.player.requester))
+            await self.bot.say(embed=embed)
             await state.songs.put(entry)
 
     @commands.command(pass_context=True, no_pm=True)
